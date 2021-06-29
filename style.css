@@ -1,0 +1,23 @@
+.circles {
+    fill: red;
+    stroke: black;
+}
+
+.title {
+    font-size: 3.7em;
+    fill: #635F5D;
+  }
+
+.circles:hover {
+    fill: steelblue;
+    stroke: black;
+}
+
+.axis-label {
+    font-size: 5em;
+    fill: #8E8883;
+  }
+
+  .test {
+    color: hotpink;
+  }
