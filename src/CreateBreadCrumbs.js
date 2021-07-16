@@ -5,7 +5,7 @@
  * @param {*} breadcrumbHeight a number containing the width used to generate the polygon.
  * @returns a string that describes the points of a breadcrumb SVG polygon.
  */
-function breadcrumbPoints(props) {
+function breadCrumbPoints(props) {
   const {i,breadcrumbWidth,breadcrumbHeight} = props
   const tipWidth = 10;
   const points = [];
@@ -46,7 +46,7 @@ export const createBreadCrumbs = (navbar_svg,props)=>{
   // Create merge selection for the polygons and add needed attributes
   gEnter.append("polygon")
     .merge(g.select("polygon"))
-        .attr("points", (d,i)=> breadcrumbPoints({i,breadcrumbWidth,breadcrumbHeight}))
+        .attr("points", (d,i)=> breadCrumbPoints({i,breadcrumbWidth,breadcrumbHeight}))
         .attr("fill", d => {
 
             if(d.data.name.includes('F')){

@@ -1,5 +1,6 @@
 import { createBreadCrumbs } from "/src/CreateBreadCrumbs.js";
 import { colors } from "/src/colors_array.js";
+import { primers } from "/src/primer-values.js";
 
 /**
  * The function writeDownloadLink selects an svg and exports it.
@@ -14,7 +15,6 @@ export const writeDownloadLink = (svgID, chartName) => {
  * @returns An object containing the hierarchical data.
  */
 const buildHierarchy = (csv) => {
-  const unqiueValues = [];
   const data = { name: "root", children: [] };
   for (let i = 0; i < csv.length; i++) {
     const sequence = csv[i][0];
@@ -42,7 +42,6 @@ const buildHierarchy = (csv) => {
         // If we don't already have a child node for this branch, create it.
         if (!foundChild) {
           childNode = { name: nodeName, children: [] };
-          unqiueValues.push(childNode.name);
           children.push(childNode);
         }
         currentNode = childNode;
@@ -57,7 +56,6 @@ const buildHierarchy = (csv) => {
           }
         });
         if (!exists) {
-          unqiueValues.push(childNode.name);
           children.push(childNode);
         } else {
           children.map((element) => {
@@ -71,7 +69,7 @@ const buildHierarchy = (csv) => {
     }
   }
 
-  return { data, unqiueValues };
+  return { data};
 };
 
 /**
@@ -82,8 +80,8 @@ const buildHierarchy = (csv) => {
 const parseCsvData = (props) => {
   const { csvData } = props;
   const csv = d3.csvParseRows(csvData);
-  const { data, unqiueValues } = buildHierarchy(csv);
-  return { data, unqiueValues };
+  const { data } = buildHierarchy(csv);
+  return { data };
 };
 
 /**
@@ -100,10 +98,14 @@ const createPrimerArrays = (data) => {
   data.forEach((e) => {
     if (e.includes("F")) {
       if (!forwardElements.includes(e)) {
+        // const index = parseInt(e.split("_")[1]) -1 
+        // forwardElements[index] = e
         forwardElements.push(e);
       }
     } else if (e.includes("R")) {
       if (!reverseElements.includes(e)) {
+        // const index = parseInt(e.split("_")[1]) -1
+        // reverseElements[index] = e
         reverseElements.push(e);
       }
     } else {
@@ -164,14 +166,13 @@ export const createSunburst = (sunburst_svg, props) => {
   const radius = width / 2;
 
   // Parse the CSV dat
-  const { data, unqiueValues } = parseCsvData({ csvData });
+  const { data } = parseCsvData({ csvData });
 
   const { otherElements, forwardElements, reverseElements } =
-    createPrimerArrays(unqiueValues);
+    createPrimerArrays(primers);
 
   // Chroma.js colorscale
   const color_scale = chroma.scale(colors);
-
   //Create the color scales needed for the graph
   const forwardColor = createColorScale(
     forwardElements,
@@ -285,6 +286,7 @@ export const createSunburst = (sunburst_svg, props) => {
     .enter()
     .append("path")
     .merge(sunburstselection)
+    .attr("id","arc")
     .attr("fill", (d) => {
       if (d.data.name.includes("F")) {
         return forwardColor(d.data.name);
@@ -296,13 +298,16 @@ export const createSunburst = (sunburst_svg, props) => {
     })
     .attr("fill-opacity", (d) => {
       if (d.data.name.slice(-1) == 2) {
-        return 0.3;
+        return 0.2;
       }
     })
     .attr("d", arc)
     .attr("transform", (d, i) => `translate(${width / 2}, ${width / 2})`);
   //Exit selection that removes old elements
   sunburstselection.exit().remove();
+
+
+
 
   // Create data selection that adds a single element
   const hoverg = sunburst_svg.selectAll("#hover").data([null]);

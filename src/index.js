@@ -1,6 +1,10 @@
 import "../style.css";
 import { writeDownloadLink, createSunburst } from "/src/createGraph.js";
-import loadedData from "../UMIData.csv";
+import loadedData from "../18s-R-01_UMI.csv";
+
+
+const generateSunburst = () =>{
+
 
 // Select the svg for the sunburst
 const sunburst_svg = d3.select("svg#sunburst");
@@ -37,3 +41,9 @@ const render = () => {
 
 // Initialize visualization
 render();
+
+
+}
+
+generateSunburst()
+
