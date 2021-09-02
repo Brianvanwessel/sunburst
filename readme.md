@@ -18,7 +18,7 @@
     - For development, you can follow the following steps:
         - Pull the main branch from Github
         - Make sure node and npm are installed
-        - Install packages from package.json
+        - Run "npm install" to install needed packages
         - Add the CSV you want to use for the visualization in the main directory and call it Data.js
             - Change the filename of 'loadedData' variable in de src/index.js if you want your data file to have a different name
         - Run npm run dev in the main directory
