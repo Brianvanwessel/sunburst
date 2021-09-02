@@ -1,6 +1,6 @@
 import "../style.css";
 import { writeDownloadLink, createSunburst } from "/src/createGraph.js";
-import loadedData from "../18s-R-01_UMI.csv";
+import loadedData from "../Data.csv";
 
 
 const generateSunburst = () =>{

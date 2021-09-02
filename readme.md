@@ -4,7 +4,7 @@
     - Pull the main branch from Github
     - Make sure node and npm are installed
     - Run "npm install" to install needed packages
-    - Add the CSV file you want to use for the visualization in the main directory and call it Data.js
+    - Add the CSV file you want to use for the visualization in the main directory and call it Data.csv
         - Change the filename of 'loadedData' variable in de src/index.js if you want your data file to have a different name
     - run npm run build in the main directory
     - Open the index.html file and use the visualization
@@ -20,7 +20,7 @@
         - Pull the main branch from Github
         - Make sure node and npm are installed
         - Run "npm install" to install needed packages
-        - Add the CSV you want to use for the visualization in the main directory and call it Data.js
+        - Add the CSV you want to use for the visualization in the main directory and call it Data.csv
             - Change the filename of 'loadedData' variable in de src/index.js if you want your data file to have a different name
         - Run npm run dev in the main directory
         - Open the project with the given URL
