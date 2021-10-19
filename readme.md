@@ -2,18 +2,15 @@
 
 
 # Install dependencies
-
-- Pull the main branch from Github
-    git clone https://github.com/Brianvanwessel/sunburst.git
-
-- Make sure node and npm are installed (minimum node version 14.16.1)
-    curl -sL https://deb.nodesource.com/setup_14.x - o nodesource_setup.sh
-    bash nodesource_setup.sh
-    apt-get install -y nodejs
-        
-- Run "npm install" to install needed packages
-    cd Circle-packing-visualization
-    npm install
+    - Pull the main branch from Github
+        git clone https://github.com/Brianvanwessel/sunburst.git
+    - Make sure node and npm are installed (minimum node version 14.16.1)
+        curl -sL https://deb.nodesource.com/setup_14.x - o nodesource_setup.sh
+        bash nodesource_setup.sh
+        apt-get install -y nodejs     
+    - Run "npm install" to install needed packages
+        cd Circle-packing-visualization
+        npm install
 
 
 # How to create the visualization
