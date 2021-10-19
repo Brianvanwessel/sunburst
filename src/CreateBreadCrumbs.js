@@ -75,7 +75,7 @@ export const createBreadCrumbs = (navbar_svg,props)=>{
     .attr("dy", "0.99em")
     .attr("text-anchor", "middle")
     .attr("font-size", "2em")
-    .attr("fill", "white")
+    .attr("fill", "black")
     .attr("stroke","black")
     .text(d => { 
         return d.data.name});
