@@ -1,8 +1,13 @@
 import argparse
+import pandas as pd
+
 def main():
     args = parse_args()
     csvData = parseFile(args.input, ',')
     createUMIData(csvData,args.output)
+
+    #added processing to make sum of UMI overall
+    sumTable(args.output)
 
 def parse_args():
     """
@@ -49,5 +54,16 @@ def createUMIData(csvData,outputFile):
             outF.write("\n")
     outF.close()
 
+def sumTable(outF):
+    """
+    This function sums the count for equal UMI's and outputs to csv
+    :param outF: Output file path
+    :return: -
+    """
+
+    df=pd.read_csv(outF, header = None)
+    df.columns =['UMI', 'Count']
+    df = df.groupby("UMI").sum()
+    df.to_csv(outF, header=False)
 
 main()
